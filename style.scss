@@ -1,0 +1,74 @@
+.Test{
+    background-color:cadetblue;
+}
+
+.footerclass{
+    background-color: bisque;
+    font-family: 'poppins';
+    
+}
+
+
+
+.header{
+    height:80px;
+    background-color: burlywood;
+    display:flex;
+    justify-content: space-around;
+    
+    
+    .menu{
+        margin-top: 25px;
+        display: flex;
+        flex-direction: row;
+       
+        .menu-item{
+            color: black !important;
+            font-family:'Space Mono';
+            font-weight: 400;
+            font-size: 16px;
+            margin-left: 30px;
+            list-style: none;
+            text-transform: uppercase;
+            text-decoration: none;
+
+            & a{
+                text-decoration: none;
+                color: black;
+            }
+            
+        }
+        
+    }
+    .logoHeader{
+        height:15px;
+        margin-top: 30px;
+        }
+
+}
+.footer{
+    display: flex;
+    justify-content: space-around;
+    
+
+       .menu{
+        width: 100%;
+        border-top: solid black 1px;
+        display: flex;
+        justify-content: center;
+       } 
+
+       .menu-item{
+        padding-top: 5px;
+        font-family: 'Space Mono';
+        font-size: 14px;
+        margin-left: 45px;
+        list-style: none;
+        text-transform: uppercase;
+       }
+       & a{
+        text-decoration: none;
+        color: black;
+    }
+
+}

@@ -1,4 +1,13 @@
+<div class="footer">
+<?php 
+    wp_nav_menu(
+        array(
+            'menu'=> 'Footer Menu',
+            'container' => '', 
+            
+        )
+    );
+?>
+</div>
     </body>
-
-    <h1 class="footerclass"> Footer </h1>
 </html>
