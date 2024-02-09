@@ -1,15 +1,13 @@
-.Test {
-  background-color: cadetblue;
-}
-
-.footerclass {
-  background-color: bisque;
-  font-family: "poppins";
+.hero-banner .hero-image {
+  width: 100%;
+  height: 80vh;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .header {
   height: 80px;
-  background-color: burlywood;
+  box-shadow: 0 16px 16px -10px rgb(218, 217, 217);
   display: flex;
   justify-content: space-around;
 }
@@ -28,6 +26,9 @@
   text-transform: uppercase;
   text-decoration: none;
 }
+.header .menu .menu-item a:hover {
+  font-weight: 900;
+}
 .header .menu .menu-item a {
   text-decoration: none;
   color: black;
@@ -37,8 +38,163 @@
   margin-top: 30px;
 }
 
-.footer {
+.herobanner {
+  width: 90%;
+}
+.herobanner .random-photo {
+  -o-object-fit: fill;
+     object-fit: fill;
+  max-width: 100%;
+  max-height: 100vh;
+}
+
+.hero-title {
+  background-color: cadetblue;
+  margin: auto;
   display: flex;
+}
+.hero-title img {
+  position: relative;
+}
+
+.entry-title {
+  font-family: "Space Mono";
+}
+
+.photo-article {
+  display: flex;
+  position: relative;
+  margin: auto;
+  width: 87%;
+}
+.photo-article .entry-title {
+  font-weight: 400;
+  font-size: 50px;
+}
+.photo-article .photo-infos {
+  position: relative;
+  bottom: 0%;
+  font-family: "Space Mono";
+  font-weight: 400;
+  text-transform: uppercase;
+  width: 50%;
+  padding: 25px;
+}
+.photo-article .photo-infos .info-container {
+  position: absolute;
+  margin-left: 23%;
+  bottom: 3%;
+  border-bottom: solid black 2px;
+  width: 80%;
+  padding-bottom: 15px;
+}
+.photo-article .photo-infos .category, .photo-article .photo-infos .format, .photo-article .photo-infos .type, .photo-article .photo-infos .ref, .photo-article .photo-infos .year {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.photo-article .main-image-container {
+  right: 10%;
+  padding-bottom: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  align-items: end;
+  padding-top: 20px;
+}
+.photo-article .main-image-container .wp-block-image {
+  overflow: hidden;
+  max-width: 700px;
+  max-height: 800px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.photo-contact-container {
+  display: flex;
+  -moz-columns: 3;
+       columns: 3;
+  width: 71%;
+  margin-left: 18%;
+  border-bottom: solid rgb(110, 109, 109) 2px;
+  margin-top: auto;
+  height: 120px;
+}
+.photo-contact-container .contact-arrows-container {
+  display: inline-block;
+  position: relative;
+}
+.photo-contact-container .contact-arrows-container .photo-arrows {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50%;
+}
+.photo-contact-container .photo-contact-button {
+  font-family: "Space Mono";
+  width: 292px;
+  height: 50px;
+  border: none;
+  margin: auto;
+  margin-left: 0%;
+}
+.photo-contact-container .photo-contact-button:hover {
+  background: rgb(165, 164, 164);
+  color: #fff;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.photo-contact-container .photo-contact-text {
+  margin: auto;
+  font-family: "Space Mono";
+  margin-left: 0px;
+  margin-right: 100px;
+}
+.photo-contact-container .photo-contact-image {
+  display: inline-block;
+  position: relative;
+  margin-top: 20px;
+}
+.photo-contact-container .photo-contact-image .attachment-thumbnail {
+  height: 71px;
+  width: 81px;
+  margin-left: 80px;
+}
+
+.aimerez-aussi .aussi-container {
+  text-transform: uppercase;
+  margin: auto;
+}
+.aimerez-aussi .aussi-container .photos-related {
+  display: flex;
+  width: 70%;
+  margin: auto;
+  padding-bottom: 30px;
+  justify-content: center;
+  margin-left: 20%;
+}
+.aimerez-aussi .aussi-container .photos-related img {
+  height: 500px;
+  width: 630px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding-right: 70px;
+}
+.aimerez-aussi .aussi-container .aussi-title {
+  font-family: "Space Mono";
+  font-weight: 400;
+  margin-left: 18%;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.contact-page {
+  height: 100vh;
+}
+
+.get_id {
+  display: none !important;
+}
+
+.footer {
+  display: block;
   justify-content: space-around;
 }
 .footer .menu {
@@ -58,4 +214,62 @@
 .footer a {
   text-decoration: none;
   color: black;
+}
+.footer .form-overlay {
+  height: 100vh;
+  background-color: transparent;
+  margin: auto;
+}
+.footer .form-overlay .form {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  margin: auto;
+  width: 263px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 2;
+}
+.footer .form-overlay .form .input[type=text] {
+  font-family: "Poppins";
+  box-shadow: none;
+}
+.footer .form-overlay .form input, .footer .form-overlay .form textarea {
+  border-color: rgb(199, 197, 197);
+  border-radius: 5px;
+  width: 100%;
+  height: 30px;
+  font-family: "Poppins";
+}
+.footer .form-overlay .form textarea {
+  height: 200px !important;
+}
+.footer .form-overlay .form .wpcf7-submit {
+  padding: 8px 15px 8px 15px;
+  border-radius: 0;
+  border: none;
+  width: 263px;
+  height: 50px;
+  font-family: "Poppins";
+}
+.footer .form-overlay .form .span {
+  font-family: "Poppins";
+}
+.footer .form-overlay .form-container {
+  border: black solid 3px;
+  margin-top: 50px !important;
+  width: 40%;
+  margin: 30%;
+}
+.footer .form-overlay .form-container .contactHeader {
+  margin: auto;
+  width: 100%;
+  padding: 0;
+}
+.footer .form-overlay .inactive {
+  display: none;
+}
+.footer .form-overlay .active {
+  display: block;
 }/*# sourceMappingURL=style.css.map */
