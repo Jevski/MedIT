@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 <p class="get_id"><?php $postID = the_ID(); ?></p>
+        
 <section class="page">
     <section>
 <article class="photo-article">
@@ -47,7 +48,12 @@
                 if ($references) {
                     echo 'Reference : ' . esc_html($references);
                 }
+                
             ?>
+             <script>
+            //on passe la variable ref php en javascript pour la préécrire dans le formulaire
+            let ref = <?php echo json_encode($references); ?>;
+        </script>
         </div>
         <div class="year">Année : <?php the_time('Y'); ?></div>
             </div>
@@ -59,8 +65,11 @@
         
     </div>
 </article>
+
     <div class="photo-contact-container">
         <span class="photo-contact-text">Cette photo vous interesse ? </span>
+
+
         <button class="photo-contact-button"> Contact</button>
         <div class="contact-arrows-container">
         <div class="photo-contact-image">
@@ -70,7 +79,6 @@
         
                 $next_post_thumbnail = get_the_post_thumbnail($next_custom_post, 'thumbnail');
 
-            
                 echo $next_post_thumbnail;
             ?>
         </div>
@@ -100,12 +108,11 @@
                 
         <?php 
         $args = array(
-            'post_type' => 'photos', // CPT photos
-            'posts_per_page' => 2, // Récupère 2 images
+            'post_type' => 'photos', 
+            'posts_per_page' => 2, 
             'tax_query' => array(
                 array(
-                    'taxonomy' => 'mota-category', // on veut filtrer sur les catégories
-                    'field' => 'id',
+                    'taxonomy' => 'mota-category',
                     'terms' => get_term_by('name', $categories[0]->name, 'mota-category')->term_id, // on veut la catégorie du post en cours
                 ),
             ),
