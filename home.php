@@ -3,6 +3,7 @@
 
 <?php 
 get_header(); ?>
+
 <section class="page">
 <div class="hero-banner">
     <div class="random-photo">
@@ -32,11 +33,10 @@ get_header(); ?>
 
     
 <div class="filters">
+
     <div class="filters-left">
-        <!-- Category-->
-        <label class="select2filter">
         <select id="category-select" class="category-filter">
-            <option selected value="all">Catégories</option>
+            <option value="all"></option>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'mota-category',
@@ -49,8 +49,6 @@ get_header(); ?>
                 }
             ?>
         </select>
-        </label>
-
         <!-- Format -->
         <select id="format-select" class="format-filter">
             <option value="all">Format</option>
@@ -67,79 +65,24 @@ get_header(); ?>
                 }
             ?>
         </select>
+    </div>   
+     
+    <div class="filters-right">
+        <select id ="order-select" class="time-filter">
+            <option value="">Trier par</option>
+            <option value="ASC">Date - Ordre croissant</option>
+            <option value="DESC">Date - Ordre décroissant</option>
+        </select>
     </div>
-    <select id ="order-select" class="time-filter">
-        <option value="ASC">Trier par</option>
-        <option value="ASC">Date - Ordre croissant</option>
-        <option value="DESC">Date - Ordre décroissant</option>
-    </select>
-</div>
 </div>
 
-<div class="photos-container">
-    <div class="home-gallery-container">
-        <?php 
-        $categories = get_the_terms(get_the_ID(), 'mota-category');
-        $args = array(
-            'post_type' => 'photos', 
-            'posts_per_page' => "2", 
-        );
-        
-        $query = new WP_Query($args);
-        
-        if ($query->have_posts()) {
-            while ($query->have_posts()) {
-                $query->the_post();
-                $urlrelated = get_the_permalink();
-                ?>
-                <div class="home-gallery-image">
-                    
-                        <?php 
-                        the_post_thumbnail(); 
-                        ?>
-                    </a>
-                    <div class="lightbox-icons inactive">
-                        <img class="fullscreen-button" src="<?php echo get_template_directory_uri(); ?>/assets/Icons/Icon_fullscreen.png">
-                        <a href="<?php echo $urlrelated; ?>"><img class="view-button" src="<?php echo get_template_directory_uri(); ?>/assets/Icons/Icon_eye.png"></a>
-                        <div class="lightbox-text">
-                        <p>
-                        <?php
-                            $categories = get_the_terms(get_the_ID(), 'mota-category');
-                                if ($categories && !is_wp_error($categories)) {
-                                    echo '<div class="custom-lightbox-cat">';
-                                    echo  $categories[0]->name;
-                                    echo '</div>';
-                                    
-                                }
-                            ?>
-                        </p>
-                        <span>
-                        <?php
-                            $references = get_post_meta(get_the_ID(), 'Reference', true);
-                                if ($references) {
-                                    echo '<div class="custom-lightbox-ref">';
-                                    echo  esc_html($references);
-                                    echo '</div';
-                                }
-                                
-                        ?>
-                        </span>
-                            </div>
-                    </div>
-                </div>
-                <?php
-            }
-            wp_reset_postdata(); 
-        }
-        ?>
-    </div>
+<div class="template-lightbox-container">
+
 </div>
-<div > 
 
 
     <div class="ajax-container">
-
-    
+        
     </div>
     
 </div>

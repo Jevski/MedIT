@@ -25,16 +25,10 @@ function mota_enqueue_styles() {
 function mota_enqueue_scripts() {
     wp_enqueue_script('mon-script', get_template_directory_uri() . '/js/script.js', array('jquery'),'1.0');
     
+    
 }
+
 add_action('wp_enqueue_scripts', 'mota_enqueue_scripts');
-
-function motaphoto_enqueue_lightbox() {
-    wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.0');
-}
-
-add_action('wp_enqueue_scripts', 'motaphoto_enqueue_lightbox');
-
-
 
 
 
@@ -44,48 +38,149 @@ function custom_ajaxurl() {
     echo '</script>';
 }
 add_action('wp_head', 'custom_ajaxurl');
+
   	
-
-
-function load_custom_image_callback() {
-    // Verify the AJAX nonce
-    check_ajax_referer('ajax-nonce', 'nonce');
-
-    // Your custom logic to fetch the image URL
-    $image_url = get_field('mota-category'); // Replace 'image_field_name' with the actual field name
-    
-    // Send the image URL back as a response
-    wp_send_json_success(array('image_url' => $image_url));
+function custom_template_lightbox(){
+    echo '<script>';
+    echo 'const templateParts = "/template-parts/lightbox-main.php" ';
+    echo '</script>';
 }
-add_action('wp_ajax_load_custom_image', 'load_custom_image_callback');
-add_action('wp_ajax_nopriv_load_custom_image', 'load_custom_image_callback'); 
-
-
+add_action( 'wp_head', 'custom_template_lightbox');
 
 
 function load_more_photos() {
     // Your code to fetch additional images and return the HTML
-    $page = $_POST['page'];
+    $numberphoto = $_POST['numberphoto'];
+    $offset = $_POST['offset'];
+    $format = $_POST['format'];
+    $category = $_POST['category'];
+    $order = $_POST['order'];
+    
+   
+        // Get the IDs of the images already displayed
+    $query= array();
+    if ($category != 'all'){
+        $query[] = array(
+            'taxonomy' => 'mota-category',
+            'field' => 'slug',
+            'terms' => $category,
+        );
+    }
 
     
-    $args = array(
-        'post_type' => 'photos', 
-        'posts_per_page' => "2", 
-    );
-    
-    $query = new WP_Query($args); //on envoie la requette avec les arguments
+    if ($format != 'all'){
+        $query[] = array(
+            'taxonomy' => 'mota-format',
+            'field' => 'slug',
+            'terms' => $format,
+        );
+    }
 
-    if ($query->have_posts()) : //si la requette retourne des résultats
-        while ($query->have_posts()) : $query->the_post();
+    if (count($query) > 1){
+        $query['relation'] = 'AND';
+    }
+    var_dump($query);
+        $args = array(
+            'post_type' => 'photos', 
+            'posts_per_page' => $numberphoto,
+            'offset' => $offset,
+            'order' => $order,
+            'tax_query' => $query
+        );
+        // 
+      /*  
+    }else if ($category == 'all'){
+        $args = array (
+            'post_type' => 'photos',
+            'posts_per_page' => $numberphoto,
+            'offset' => $offset,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'mota-format',
+                    'field' => 'slug',
+                    'terms' => $format,
+                ),
+            ),
+            'order' => $order,
+        );
+    }else if($format== 'all'){
+        //si on veut seulement tous les formats, on filtre uniquement sur les catégories
+        $args = array(
+            'post_type' => 'photos',
+            'posts_per_page' => $numberphoto,
+            'offset' => $offset,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'mota-category',
+                    'field' => 'slug',
+                    'terms' => $category,
+                ),
+            ),
+            'order' => $order,
+        );
+    }else{
+        //sinon c'est que l'on fils les formtre à la foiats et les catégories
+        $args = array(
+            'post_type' => 'photos',
+            'posts_per_page' => $numberphoto,
+            'offset' => $offset,
+            'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => 'mota-format',
+                    'field' => 'slug',
+                    'terms' => $format,
+                ),
+                array(
+                    'taxonomy' => 'mota-category',
+                    'field' => 'slug',
+                    'terms' => $category,
+                ),
+            ),
+            'order' => $order,
+        );
+        */
+    
+
+    
+
+    $query = new WP_Query($args); 
+
+    if ($query->have_posts()) : 
+        while ($query->have_posts()) :
+            $query->the_post();
             $urlrelated = get_the_permalink();
-            echo '<div class="more-photos">'; //on affiche les résultats dans la div
+            echo '<div class="home-gallery-image">'; 
             echo get_the_post_thumbnail();
-            echo '</div>';
+            echo    '<div class="lightbox-icons inactive">
+                    <img class="fullscreen-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_fullscreen.png">
+                    <a href="' . $urlrelated . '"><img class="view-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_eye.png"></a>';
+            
+            echo '<div class="lightbox-text">';
+            $categories = get_the_terms(get_the_ID(), 'mota-category');
+            if ($categories && !is_wp_error($categories)) {
+                echo '<div class="custom-lightbox-cat">';
+                echo $categories[0]->name;
+                echo '</div>';
+            }
+            $references = get_post_meta(get_the_ID(), 'Reference', true);
+            if ($references) {
+                echo '<div class="custom-lightbox-ref">';
+                echo  esc_html($references);
+                }
+
+
+            
+            echo '</div></div></div></div>';
         endwhile;
         wp_reset_postdata();
     else :
-        echo 'Pas de photos trouvées<br/>'; //sinon message d'erreur
+        echo '<div class="error-message">';
+        echo '<p>Pas de photos trouvées<br/></p>';
+        echo' </div>'; //error message
     endif;
+
+   
 
     die();
 }
@@ -93,15 +188,16 @@ function load_more_photos() {
 
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
-//ajax//
 
 
 
 
+function motaphoto_enqueue_lightbox() {
+    wp_enqueue_script ('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.0');
+}
 
+add_action('wp_enqueue_scripts', 'motaphoto_enqueue_lightbox');
 
-
-        // Chargment des commentaires en Ajax
 
 
 

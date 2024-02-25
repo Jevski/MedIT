@@ -1,5 +1,6 @@
 <?php get_header(); ?>
-<p class="get_id"><?php $postID = the_ID(); ?></p>
+<p class="get_id"><?php $postID = the_ID(); ?>
+</p>
         
 <section class="page">
     <section>
@@ -51,9 +52,12 @@
                 
             ?>
              <script>
+
             //on passe la variable ref php en javascript pour la préécrire dans le formulaire
-            let ref = <?php echo json_encode($references); ?>;
+            var prepopulateRef = <?php echo json_encode($references); ?>;
+            //console.log(prepopulateRef);
         </script>
+
         </div>
         <div class="year">Année : <?php the_time('Y'); ?></div>
             </div>
