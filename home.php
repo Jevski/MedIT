@@ -36,7 +36,8 @@ get_header(); ?>
 
     <div class="filters-left">
         <select id="category-select" class="category-filter">
-            <option value="all"></option>
+            <label>
+            <option value=""></option>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'mota-category',
@@ -48,10 +49,13 @@ get_header(); ?>
                     }
                 }
             ?>
+            </label>
         </select>
+            </div>
         <!-- Format -->
+        <div class="filter-middle">
         <select id="format-select" class="format-filter">
-            <option value="all">Format</option>
+            <option value="">Format</option>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'mota-format',
@@ -65,7 +69,8 @@ get_header(); ?>
                 }
             ?>
         </select>
-    </div>   
+        </div>
+      
      
     <div class="filters-right">
         <select id ="order-select" class="time-filter">
@@ -75,8 +80,8 @@ get_header(); ?>
         </select>
     </div>
 </div>
+            </div>
 
-<div class="template-lightbox-container">
 
 </div>
 

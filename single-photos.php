@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-<p class="get_id"><?php $postID = the_ID(); ?>
+<p class="get_id"><?php $postID = the_ID(); 
+?>
+
 </p>
         
 <section class="page">
@@ -81,7 +83,7 @@
                 $prev_custom_post = get_previous_post($postID);
                 $next_custom_post = get_next_post($postID);
         
-                $next_post_thumbnail = get_the_post_thumbnail($next_custom_post, 'thumbnail');
+                $next_post_thumbnail = get_the_post_thumbnail($prev_custom_post, 'thumbnail');
 
                 echo $next_post_thumbnail;
             ?>
@@ -91,7 +93,7 @@
                 if ($next_custom_post) {
                     $next_custom_post_link = get_permalink($next_custom_post);
                     echo '<a href="' . esc_url($next_custom_post_link) . '"><img src="' .get_template_directory_uri() .'/assets/Icons/left-arrow.png" 1=Default.png" 
-                    alt="photo suivante" class="photo-right-arrow"/></a>';
+                    alt="photo suivante" class="photo-right-arrow nextButton"/></a>';
                 }
                     if ($prev_custom_post) {
                         $prev_custom_post_link = get_permalink($prev_custom_post);

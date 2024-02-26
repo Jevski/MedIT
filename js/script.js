@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
     // Select the input field with class 'ref'
     const inputRef = $(".ref input");
     // Log the selected input field to the console
-    console.log(inputRef);
+    // console.log(inputRef);
 
     $(".photo-contact-button").click(function() {
         // Toggle the visibility of elements with classes 'form-overlay' and 'form-container'
@@ -36,10 +36,9 @@ jQuery(document).ready(function($) {
   });
 
  //fullscreen button
- const lightBoxImages = $('.home-gallery-image');
-  $(lightBoxImages).on('mouseenter', function() {
-    console.log(".home-gallery-image");
-    console.log('Mouse entered over the image!');
+ 
+  $(".random-photo").on('mouseenter', function() {
+    console.log('Mouse entered over the image!')
     $('.lightbox-icons').toggleClass('inactive');
     // You can add any actions you want to perform when hovering over the image
 });
@@ -85,7 +84,9 @@ jQuery(document).ready(function($) {
           var format = $('#format-select').val();
           var category = $('#category-select').val();
           var order = $('#order-select').val();
-
+console.log(format);
+console.log(category);
+console.log(order);
           $.ajax({
               url: ajaxurl,
               type: 'POST',
@@ -126,3 +127,30 @@ jQuery(document).ready(function($) {
 
 });
 
+//Select 2 filter changes//
+
+$(document).ready(function() {
+    $('.time-filter').select2({
+        placeholder: 'Trier par',
+    });
+});
+$(document).ready(function() {
+    $('.format-filter').select2({
+        placeholder: 'Format',
+    });
+});
+
+$(document).ready(function() {
+    $('.category-filter').select2({
+        placeholder: 'Categories',
+    });
+});
+
+$(document).ready(function() {
+    
+
+    $('.category-filter, .format-filter, .time-filter').on('select2:open select2:close', function (e) {
+        // Find the arrow within the current filter's container
+        $(this).siblings('.select2').find('.select2-selection__arrow').toggleClass('rotate-arrow');
+      });
+  });

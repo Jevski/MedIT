@@ -56,30 +56,30 @@ function load_more_photos() {
     $category = $_POST['category'];
     $order = $_POST['order'];
     
-   
-        // Get the IDs of the images already displayed
+        
     $query= array();
-    if ($category != 'all'){
+//if category filter has been changed//
+    if ($category != ''){
         $query[] = array(
             'taxonomy' => 'mota-category',
             'field' => 'slug',
             'terms' => $category,
         );
     }
-
-    
-    if ($format != 'all'){
+//if format filter has been changed//
+    if ($format != ''){
         $query[] = array(
             'taxonomy' => 'mota-format',
             'field' => 'slug',
             'terms' => $format,
         );
     }
-
+// If both filters have been changed//
     if (count($query) > 1){
         $query['relation'] = 'AND';
+        
     }
-    var_dump($query);
+    // var_dump($query);
         $args = array(
             'post_type' => 'photos', 
             'posts_per_page' => $numberphoto,
@@ -87,62 +87,7 @@ function load_more_photos() {
             'order' => $order,
             'tax_query' => $query
         );
-        // 
-      /*  
-    }else if ($category == 'all'){
-        $args = array (
-            'post_type' => 'photos',
-            'posts_per_page' => $numberphoto,
-            'offset' => $offset,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'mota-format',
-                    'field' => 'slug',
-                    'terms' => $format,
-                ),
-            ),
-            'order' => $order,
-        );
-    }else if($format== 'all'){
-        //si on veut seulement tous les formats, on filtre uniquement sur les catégories
-        $args = array(
-            'post_type' => 'photos',
-            'posts_per_page' => $numberphoto,
-            'offset' => $offset,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'mota-category',
-                    'field' => 'slug',
-                    'terms' => $category,
-                ),
-            ),
-            'order' => $order,
-        );
-    }else{
-        //sinon c'est que l'on fils les formtre à la foiats et les catégories
-        $args = array(
-            'post_type' => 'photos',
-            'posts_per_page' => $numberphoto,
-            'offset' => $offset,
-            'tax_query' => array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'mota-format',
-                    'field' => 'slug',
-                    'terms' => $format,
-                ),
-                array(
-                    'taxonomy' => 'mota-category',
-                    'field' => 'slug',
-                    'terms' => $category,
-                ),
-            ),
-            'order' => $order,
-        );
-        */
-    
-
-    
+      
 
     $query = new WP_Query($args); 
 
@@ -152,7 +97,7 @@ function load_more_photos() {
             $urlrelated = get_the_permalink();
             echo '<div class="home-gallery-image">'; 
             echo get_the_post_thumbnail();
-            echo    '<div class="lightbox-icons inactive">
+            echo    '<div class="lightbox-icons ">
                     <img class="fullscreen-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_fullscreen.png">
                     <a href="' . $urlrelated . '"><img class="view-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_eye.png"></a>';
             

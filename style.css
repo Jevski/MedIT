@@ -83,6 +83,12 @@
   border: 2px;
 }
 
+.rotate-arrow {
+  transform: scaleY(-1);
+  transition: transform 0.2s ease; /* Optional: Add transition effect */
+  transform-origin: 0% 75%;
+}
+
 .select2-results__option {
   font-family: "Poppins" !important;
   text-transform: uppercase !important;
@@ -96,39 +102,66 @@
   color: white;
 }
 
+.select2-results__option--highlighted {
+  background-color: #ff0000 !important;
+}
+
 .select2-dropdown {
+  z-index: 88888888;
   border-radius: 10px;
-  padding-top: 29px;
+  padding-top: 10px;
   padding-left: 10px;
-  margin-top: 10px;
+  padding-bottom: 5px;
+  margin-top: 32px;
+}
+
+.select2-selection__rendered {
+  color: black !important;
+  font-weight: 700;
+}
+
+.select2-search__field {
+  display: none;
+}
+
+.select2-selection__arrow b {
+  background-image: url("assets/Icons/Icon.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 20px !important;
+  width: 20px !important;
+  margin-right: 40px !important;
+  border: none !important;
+  margin-left: -75% !important;
+}
+
+.select2-selection__placeholder {
+  color: black !important;
 }
 
 .filters {
   display: inline-flex;
   width: 75%;
   margin: auto;
-  margin-left: 14% !important;
-  justify-content: space-evenly;
+  margin-left: 19% !important;
   height: 80px;
   padding-top: 20px;
   padding-bottom: 30px;
-  background-color: brown;
+  -moz-columns: 2;
+       columns: 2;
 }
 .filters .filters-left {
   position: relative;
-  background-color: #727171;
 }
 .filters .filters-left .format-filter {
   margin-left: 50px;
-  background-color: #ff0000;
 }
-.filters .filters-left .category-filter {
-  background-color: beige;
+.filters .filter-middle {
+  margin-left: 40px;
 }
 .filters .filters-right {
   position: relative;
-  background-color: blueviolet;
-  margin-left: 320px;
+  margin-left: 410px;
 }
 .filters .filters-right .time-filter {
   position: relative;
@@ -209,9 +242,65 @@
   display: flex;
 }
 
-#lightbox, #lightbox-cross {
-  background-color: black;
-  opacity: 0.9;
+.lightbox-overlay {
+  position: fixed;
+  height: 97vh;
+  background-color: rgba(59, 59, 59, 0.8);
+  padding-top: 20px;
+  margin-bottom: 50px !important;
+  width: 98vw;
+  top: 0;
+  z-index: 100000000;
+}
+.lightbox-overlay .lightbox-modale {
+  display: flex;
+  position: relative;
+  top: 0;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
+}
+.lightbox-overlay .lightbox-modale #lightbox {
+  position: absolute;
+  margin: auto;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-previous {
+  position: absolute;
+  left: -23%;
+  top: 50%;
+  background-color: red;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-next {
+  position: absolute;
+  right: -20%;
+  top: 50%;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-image img {
+  width: 100%; /* or any desired width */
+  height: 90vh; /* This ensures the aspect ratio is maintained */
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-infos {
+  background-color: #b40505;
+  font-family: "Space Mono";
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-infos .lightbox-info-ref {
+  position: absolute;
+  left: 0%;
+}
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-infos .lightbox-info-cat {
+  position: absolute;
+  right: 0;
+}
+.lightbox-overlay .lightbox-modale .lightbox-cross {
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  top: 5%;
+  right: 2%;
 }
 
 .home-gallery-image {
@@ -426,10 +515,6 @@
 
 .contact-page {
   height: 100vh;
-}
-
-.get_id {
-  display: none !important;
 }
 
 .footer {
