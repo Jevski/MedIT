@@ -35,8 +35,8 @@ get_header(); ?>
 <div class="filters">
 
     <div class="filters-left">
-        <select id="category-select" class="category-filter">
-            <label>
+        <select id="category-select" class="category-filter filter">
+            
             <option value=""></option>
             <?php
                 $terms = get_terms(array(
@@ -45,11 +45,11 @@ get_header(); ?>
                 ));
                 if ($terms && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
-                        echo '<option class="test" value="' . $term->slug . '">' . $term->name . '</option>';
+                        echo '<option class="test" value="' . $term->term_id . '">' . $term->name . '</option>';
                     }
                 }
             ?>
-            </label>
+            
         </select>
             </div>
         <!-- Format -->
@@ -59,38 +59,33 @@ get_header(); ?>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'mota-format',
-                    'hide_empty' => false,
+                    
                 ));
                 
                 if ($terms && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
-                        echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
+                        echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
                     }
                 }
             ?>
         </select>
         </div>
       
-     
-    <div class="filters-right">
-        <select id ="order-select" class="time-filter">
-            <option value="">Trier par</option>
-            <option value="ASC">Date - Ordre croissant</option>
-            <option value="DESC">Date - Ordre décroissant</option>
-        </select>
+        <div class="filters-right">
+            <select id ="order-select" class="time-filter">
+                <option value="">Trier par</option>
+                <option value="ASC">Date - Ordre croissant</option>
+                <option value="DESC">Date - Ordre décroissant</option>
+            </select>
+        </div>
     </div>
 </div>
-            </div>
-
 
 </div>
 
-
-    <div class="ajax-container">
-        
-    </div>
+<div class="ajax-container"> 
+</div>
     
-</div>
 <div class="load-more-photos-box">
     <button id="load-more-photos">Charger plus</button>
 </div>

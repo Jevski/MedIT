@@ -1,6 +1,9 @@
 
 <?php 
 
+
+
+
 function add_nav_menus(){
     $locations= array(
         'header' => "Header Menu",
@@ -23,6 +26,9 @@ function mota_enqueue_styles() {
 
 
 function mota_enqueue_scripts() {
+    wp_enqueue_script('jquery');
+    wp_enqueue_style('select2',  "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" );
+    wp_enqueue_script('select2', "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js", array('jquery'), '4.1.0-rc.0');
     wp_enqueue_script('mon-script', get_template_directory_uri() . '/js/script.js', array('jquery'),'1.0');
     
     
@@ -36,17 +42,13 @@ function custom_ajaxurl() {
     echo '<script>';
     echo 'const ajaxurl = "' . admin_url('admin-ajax.php') . '";';
     echo '</script>';
+    
 }
 add_action('wp_head', 'custom_ajaxurl');
 
-  	
-function custom_template_lightbox(){
-    echo '<script>';
-    echo 'const templateParts = "/template-parts/lightbox-main.php" ';
-    echo '</script>';
+function getlightbox_image(){
+    
 }
-add_action( 'wp_head', 'custom_template_lightbox');
-
 
 function load_more_photos() {
     // Your code to fetch additional images and return the HTML
@@ -56,7 +58,9 @@ function load_more_photos() {
     $category = $_POST['category'];
     $order = $_POST['order'];
     
-        
+    
+    
+
     $query= array();
 //if category filter has been changed//
     if ($category != ''){
@@ -94,29 +98,7 @@ function load_more_photos() {
     if ($query->have_posts()) : 
         while ($query->have_posts()) :
             $query->the_post();
-            $urlrelated = get_the_permalink();
-            echo '<div class="home-gallery-image">'; 
-            echo get_the_post_thumbnail();
-            echo    '<div class="lightbox-icons ">
-                    <img class="fullscreen-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_fullscreen.png">
-                    <a href="' . $urlrelated . '"><img class="view-button" src="' . get_template_directory_uri() . '/assets/Icons/Icon_eye.png"></a>';
-            
-            echo '<div class="lightbox-text">';
-            $categories = get_the_terms(get_the_ID(), 'mota-category');
-            if ($categories && !is_wp_error($categories)) {
-                echo '<div class="custom-lightbox-cat">';
-                echo $categories[0]->name;
-                echo '</div>';
-            }
-            $references = get_post_meta(get_the_ID(), 'Reference', true);
-            if ($references) {
-                echo '<div class="custom-lightbox-ref">';
-                echo  esc_html($references);
-                }
-
-
-            
-            echo '</div></div></div></div>';
+            echo get_template_part('/template-parts/Imageblock');
         endwhile;
         wp_reset_postdata();
     else :
@@ -135,6 +117,23 @@ add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
 
+//Get Image post ids//
+
+function get_image_postID(){
+    $post_id = get_the_ID(); // Retrieve the ID of the current post
+    $postThumbnail = get_the_post_thumbnail($post_id); // Retrieve the post thumbnail of the current post
+    
+    // Return an array containing the post ID and the post thumbnail as JSON
+    echo json_encode(array(
+        'post_id' => $post_id,
+        'post_thumbnail' => $postThumbnail
+    ));
+    wp_die(); // Always include wp_die() at the end of your Ajax callback function.
+}
+add_action('wp_ajax_get_image_postID', 'get_image_postID');
+add_action('wp_ajax_nopriv_get_image_postID', 'get_image_postID');
+
+//Lightbox script//
 
 
 function motaphoto_enqueue_lightbox() {
@@ -144,6 +143,8 @@ function motaphoto_enqueue_lightbox() {
 add_action('wp_enqueue_scripts', 'motaphoto_enqueue_lightbox');
 
 
+
+//testing to get the values here//
 
 
 ?>

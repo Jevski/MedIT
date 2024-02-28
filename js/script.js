@@ -7,11 +7,20 @@ jQuery(document).ready(function($) {
       event.stopPropagation();
   });
 
+  $('#category-select').on('change', function() {
+    console.log('clicked');
+    // Reset pagination
+    numberphoto = 0;
+
+    // Reset the photos displayed
+    $('.ajax-container').empty();
+    load_more_photos_action();
+});
 
 
 
   // Autofill ref num
-  $(document).ready(function() {
+  
     // Select the input field with class 'ref'
     const inputRef = $(".ref input");
     // Log the selected input field to the console
@@ -24,8 +33,6 @@ jQuery(document).ready(function($) {
         // Set the value of the input field with class 'ref' to the value of 'prepopulateRef'
         inputRef.val(prepopulateRef);
     });
-});
-
 
 
 
@@ -35,13 +42,6 @@ jQuery(document).ready(function($) {
       return false;
   });
 
- //fullscreen button
- 
-  $(".random-photo").on('mouseenter', function() {
-    console.log('Mouse entered over the image!')
-    $('.lightbox-icons').toggleClass('inactive');
-    // You can add any actions you want to perform when hovering over the image
-});
 
 
   // Closing form
@@ -49,17 +49,7 @@ jQuery(document).ready(function($) {
       $('.form-overlay, .form-container').toggle();
   });
 
-  // Script for filters
-  $('format-category').hover(
-      function() {
-          // Mouse enter
-          $(this).css('background-color', 'red');
-      },
-      function() {
-          // Mouse leave
-          $(this).css('background-color', ''); // Revert to default
-      }
-  );
+  
 
   // Mobile Menu
   $(".hamburger-menu, .cross-menu").click(function() {
@@ -69,24 +59,41 @@ jQuery(document).ready(function($) {
   });
 
   // Ajax
+  var page = 2;
   var offset = 0;
   var canLoadMore = true;
   var numberphoto = 2;
 
-  load_more_photos();
+  
+//   $('.options li').on('click', function() {
+//     console.log('you\'ve clicked there'); // Corrected comment
+//     // Reset pagination
+//     numberphoto = 0;
+
+//     // Reset the photos displayed
+//     $('.ajax-container').empty();
+//     load_more_photos_action();
+// });
+
+
+
+  load_more_photos_action();
 
   $('#load-more-photos').on('click', function() {
-      load_more_photos();
+    
+      load_more_photos_action();
   });
+  
+  
 
-  function load_more_photos() {
+  function load_more_photos_action() {
       if (canLoadMore) {
           var format = $('#format-select').val();
           var category = $('#category-select').val();
           var order = $('#order-select').val();
-console.log(format);
-console.log(category);
-console.log(order);
+                // console.log(format);
+                // console.log(category);
+                // console.log(order);
           $.ajax({
               url: ajaxurl,
               type: 'POST',
@@ -108,49 +115,62 @@ console.log(order);
           });
       }
   }
-
   
 
-  $(".random-photo").click(function(){
-      $.ajax({
-          url: templateParts,
-          method: 'GET',
-          dataType: 'html',
-          success: function(response){
-              $('.template-lightbox-container').html(response);
-          },
-          error: function(xhr, status, error) {
-              console.error('Error:', error);
-          }
-      });
-  });
 
-});
+
+
+
+
+// jQuery(document).ready(function($) {
+//     $('.random-photo').on('click', function(){
+//         $.ajax({
+//             url:ajax_url,
+//             type: 'GET',
+//             data: {
+//                 action: 'get_image_postID'
+//             },
+//             success: function(response) {
+//                 console.log('Post ID:', response);
+//                 alert('Post ID: ' + response);
+//             }
+//         });
+//     });
+// });
 
 //Select 2 filter changes//
 
-$(document).ready(function() {
     $('.time-filter').select2({
         placeholder: 'Trier par',
     });
-});
-$(document).ready(function() {
+
+
     $('.format-filter').select2({
         placeholder: 'Format',
     });
-});
 
-$(document).ready(function() {
+
+
     $('.category-filter').select2({
         placeholder: 'Categories',
     });
-});
 
-$(document).ready(function() {
-    
+
+// animation for arrow change upon dropdown menu//
 
     $('.category-filter, .format-filter, .time-filter').on('select2:open select2:close', function (e) {
         // Find the arrow within the current filter's container
         $(this).siblings('.select2').find('.select2-selection__arrow').toggleClass('rotate-arrow');
       });
-  });
+  
+  
+  function openFullscreen() {
+    console.log('You clicked the button');
+    $('.lightbox-overlay').toggleClass('inactive');
+    $('.lightbox-modale').toggleClass('inactive');
+}
+
+$('.fullscreen-button').on('click', openFullscreen);
+  
+
+});

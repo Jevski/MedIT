@@ -129,11 +129,7 @@
         if ($query->have_posts()) {
             while ($query->have_posts()) {
             $query->the_post();
-            $urlrelated = get_the_permalink();
-            echo("<a href='".$urlrelated."'><div class='photos-two-related'>");
-                $query->the_post_thumbnail();
-                the_post_thumbnail(); 
-            echo("</div></a>");
+            echo get_template_part('/template-parts/Imageblock');
             }
             wp_reset_postdata(); 
         }
