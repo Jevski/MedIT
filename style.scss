@@ -758,12 +758,16 @@
     padding-top:30px;
     display:flex;
     flex-direction: column;
-    padding-bottom:100px;
+    padding-bottom:150px;
     flex-direction: column;
     margin:auto;
+    .filter-middle{
+        margin-left: 3% !important;
+        margin-top:20px !important;
+    }
     .filters-left{
-        margin-left:8% !important;
-        margin-top:60px !important;
+        margin-left: 3% !important;
+        margin-top:40px !important;
 
     .category-filter{
         
@@ -777,7 +781,8 @@
     }
 }
 .filters-right{
-    margin:auto !important;
+    margin-top:20px !important;
+    margin-left: 3% !important;
 }
 }
 .select2{
@@ -875,6 +880,17 @@
         display:none;
     }
 }
+
+.lightbox-icons{
+    .view-button{
+        position:absolute;
+        padding-bottom:110px !important;
+        padding:137px;
+    }
+    .fullscreen-button{
+        display: none;
+    }
+}
 .form-overlay{
 
     .form-container{
@@ -905,6 +921,10 @@
             display: flex;
             flex-direction: column;
             margin:auto;
+
+            .image-block{
+                margin-left: 0 !important;
+            }
 
             & img{
                 max-width:100%;
