@@ -57,7 +57,7 @@
 
             //on passe la variable ref php en javascript pour la préécrire dans le formulaire
             var prepopulateRef = <?php echo json_encode($references); ?>;
-            //console.log(prepopulateRef);
+            ;
         </script>
 
         </div>
@@ -112,28 +112,31 @@
             <h3 class="aussi-title">Vous aimerez aussi</h3>
             <div class="photos-related">
                 
-        <?php 
-        $args = array(
-            'post_type' => 'photos', 
-            'posts_per_page' => 2, 
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'mota-category',
-                    'terms' => get_term_by('name', $categories[0]->name, 'mota-category')->term_id, // on veut la catégorie du post en cours
-                ),
+            <?php 
+    $categories = get_the_terms(get_the_ID(), 'mota-category'); // Assuming you are retrieving the categories for the current post
+
+    $args = array(
+        'post_type' => 'photos', 
+        'posts_per_page' => 2, 
+        'orderby' => 'rand', // Order by random
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'mota-category',
+                'terms' => $categories[0]->term_id, // Use the first category of the current post
             ),
-        );
-        
-        $query = new WP_Query($args);
-        
-        if ($query->have_posts()) {
-            while ($query->have_posts()) {
+        ),
+    );
+    
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
             $query->the_post();
             echo get_template_part('/template-parts/Imageblock');
-            }
-            wp_reset_postdata(); 
         }
-        ?>
+        wp_reset_postdata(); 
+    }
+?>
     </div> 
         </div>
     
