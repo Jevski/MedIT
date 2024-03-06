@@ -31,6 +31,8 @@ get_header(); ?>
     </div>
 </div> 
 
+
+<?php echo get_template_directory_uri(); ?>
     
 <div class="filters">
 
@@ -45,7 +47,7 @@ get_header(); ?>
                 ));
                 if ($terms && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
-                        echo '<option class="test" value="' . $term->term_id . '">' . $term->name . '</option>';
+                        echo '<option class="" value="' . $term->term_id . '">' . $term->name . '</option>';
                     }
                 }
             ?>
@@ -73,9 +75,9 @@ get_header(); ?>
       
         <div class="filters-right">
             <select id ="order-select" class="time-filter">
-                <option value="">Trier par</option>
-                <option value="ASC">Date - Ordre croissant</option>
-                <option value="DESC">Date - Ordre décroissant</option>
+                <option value=""></option>
+                <option value="date_asc">Date - Ordre croissant</option>
+                <option value="date_desc">Date - Ordre décroissant</option>
             </select>
         </div>
     </div>
@@ -84,6 +86,7 @@ get_header(); ?>
 </div>
 
 <div class="ajax-container"> 
+    
 </div>
     
 <div class="load-more-photos-box">

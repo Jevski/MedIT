@@ -34,7 +34,7 @@
         <img class ="hamburger-menu " src="<?php echo get_template_directory_uri(); ?>/assets/Hamburger.png" alt='bouton du menu' />
         <img class="cross-menu inactive" src="<?php echo get_template_directory_uri(); ?>/assets/Cross.png" alt='bouton de fermeture du menu' />
     </div>
-<div class="open-nav-menu inactive">
+<div class="open-nav-menu" style="display:none;">
     <div class="header-nav-mobile">
 <?php 
     wp_nav_menu(
