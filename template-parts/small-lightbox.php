@@ -12,7 +12,7 @@
         $categories = get_the_terms(get_the_ID(), 'mota-category');
         if ($categories && !is_wp_error($categories)) {
             echo '<div class="custom-lightbox-cat">';
-            echo $categories[0]->name;
+            echo $categories[0]->term_id;
             echo '</div>';
         } 
 

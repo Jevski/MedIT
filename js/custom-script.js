@@ -94,7 +94,6 @@ function load_more_photos_action() {
                         //Append image div to the lightbox div
                         imageDiv.append(imageAjax, customDiv);
                     
-                        
                         // Append the constructed lightbox div to the ajax container
                         $('.ajax-container').append(imageDiv);
                         // $('.lightbox-info-title').append(customTitle, customCat);
