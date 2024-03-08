@@ -30,14 +30,13 @@ get_header(); ?>
     <img src="<?php echo get_template_directory_uri();?>/assets/Titreheader.png" alt="photographe event"/>
     </div>
 </div> 
-
     
 <div class="filters">
 
     <div class="filters-left">
         <select id="category-select" class="category-filter filter">
             
-            <option value=""></option>
+            <option value="">Category</option>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'mota-category',
@@ -45,7 +44,7 @@ get_header(); ?>
                 ));
                 if ($terms && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
-                        echo '<option class="test" value="' . $term->term_id . '">' . $term->name . '</option>';
+                        echo '<option class="" value="' . $term->term_id . '">' . $term->name . '</option>';
                     }
                 }
             ?>
@@ -73,9 +72,9 @@ get_header(); ?>
       
         <div class="filters-right">
             <select id ="order-select" class="time-filter">
-                <option value="">Trier par</option>
-                <option value="ASC">Date - Ordre croissant</option>
-                <option value="DESC">Date - Ordre décroissant</option>
+                <option value="">Trier Par</option>
+                <option value="asc">Date - Ordre croissant</option>
+                <option value="desc">Date - Ordre décroissant</option>
             </select>
         </div>
     </div>
@@ -84,6 +83,7 @@ get_header(); ?>
 </div>
 
 <div class="ajax-container"> 
+    
 </div>
     
 <div class="load-more-photos-box">

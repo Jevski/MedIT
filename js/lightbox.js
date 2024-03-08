@@ -1,53 +1,51 @@
-jQuery(document).ready(function($) {
-
-    function load_lightbox_image(){
-        var imageLightbox = $('.lightbox-image'); // Select the element where you want to display the image
-    
-        $.ajax({
-            url: ajaxurl,
-            type: 'GET',
-            data: {
-                action: 'get_image_postID',
-            },
-            success: function (response){
-                // Append the response (which should contain the post thumbnail HTML) to the imageLightbox element
-                imageLightbox.html(response);
-            }
-        })
-    }
-
-    $('.fullscreen-button').on('click', function() {
-        load_lightbox_image();
-    });
-    
-// closing of the main lightbox//
-    $(".lightbox-cross").click(function(){
-        $('.lightbox-overlay, .lightbox-modale').toggleClass('inactive');
-    })
-
-    
-    var image = $('.home-gallery-image');
-
-    // Add event handlers for mouseenter and mouseleave
-    image.on('mouseenter', function() {
-      // Add the 'inactive' class to the related lightbox-icons
-      $(this).find('.lightbox-icons').toggleClass('inactive');
-    });
- 
+// jQuery(document).ready(function($){
+// load_photos_single();
 
 
- 
-//   $(".random-photo, .photos-two-related img").on('mouseenter', function() {
-//     console.log('Mouse entered over the image!')
-//     $('.lightbox-icons').toggleClass('inactive');
-//     // You can add any actions you want to perform when hovering over the image
+// var baseURL = scripts_params.theme_url;
+
+
+// let currentPhotoIndex = 0;
+// let photoData = []; // Array to store fetched photo data
+
+// const lightboxImg = $('#lightbox-info-img');
+// const nextBtn = $('.lightbox-next');
+
+// var galleryImage =$('.gallery-image');
+// var page = 2;
+// var offset = 0;
+// var canLoadMore = true;
+// var numberphoto = 2;
+
+// function load_photos_single() {
+//     var requestURL = `${scripts_params.rest_url}wp/v2/photos?per_page=${page}&offset=${offset}&_embed=true`;
+
+//     $.ajax({
+//         url: requestURL,
+//         type: 'GET',
+//         success: function(response) {
+//             if (response.length === 0) {
+                
+//             } else {
+//                 $.each(response, function(index, photo) {
+                    
+
+                   
+//                 });
+//                 offset += numberphoto;
+//             }
+//         },
+//         error: function(xhr, status, error) {
+//             console.error(xhr.responseText);
+//         }
+//     });
+// }
+
+
+
+
+
+
+
+
 // });
-
-
-
-});
-
-
-
-
-

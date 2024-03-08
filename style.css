@@ -181,6 +181,10 @@
   padding-left: 15px !important;
 }
 
+.custom-div {
+  background-color: #464545;
+}
+
 .lightbox-container {
   top: 0;
   display: none;
@@ -197,7 +201,7 @@
   font-family: "Space Mono";
   z-index: 55555;
 }
-.lightbox-icons .custom-lightbox-cat, .lightbox-icons .custom-lightbox-ref {
+.lightbox-icons .custom-lightbox-cat, .lightbox-icons .custom-lightbox-title {
   position: absolute;
   font-family: "Space Mono";
   text-transform: uppercase;
@@ -207,7 +211,7 @@
   right: 18%;
   bottom: 5%;
 }
-.lightbox-icons .custom-lightbox-ref {
+.lightbox-icons .custom-lightbox-title {
   left: 5%;
   bottom: 5%;
   font-weight: 500;
@@ -234,19 +238,14 @@
   padding-bottom: 204px;
 }
 
-.lightbox-active {
-  top: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100vh;
-  z-index: 999999;
-  display: flex;
+.customCat {
+  color: white;
 }
 
 .lightbox-overlay {
   position: fixed;
   height: 97vh;
-  background-color: rgba(59, 59, 59, 0.2);
+  background-color: rgba(59, 59, 59, 0.6);
   padding-top: 20px;
   margin-bottom: 50px !important;
   width: 98vw;
@@ -267,9 +266,8 @@
 }
 .lightbox-overlay .lightbox-modale #lightbox .lightbox-previous {
   position: absolute;
-  left: -23%;
+  left: -19%;
   top: 50%;
-  background-color: red;
 }
 .lightbox-overlay .lightbox-modale #lightbox .lightbox-next {
   position: absolute;
@@ -277,18 +275,17 @@
   top: 50%;
 }
 .lightbox-overlay .lightbox-modale #lightbox .lightbox-image img {
-  width: 100%; /* or any desired width */
-  height: 90vh; /* This ensures the aspect ratio is maintained */
+  max-width: 70vw;
+  max-height: 85vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .lightbox-overlay .lightbox-modale #lightbox .lightbox-infos {
-  background-color: #b40505;
   font-family: "Space Mono";
   text-transform: uppercase;
   color: #ffffff;
 }
-.lightbox-overlay .lightbox-modale #lightbox .lightbox-infos .lightbox-info-ref {
+.lightbox-overlay .lightbox-modale #lightbox .lightbox-infos .lightbox-info-title {
   position: absolute;
   left: 0%;
 }
@@ -302,6 +299,68 @@
   position: absolute;
   top: 5%;
   right: 2%;
+  cursor: pointer;
+}
+
+.small-lightbox {
+  height: 99%;
+  width: 88%;
+  background-color: rgba(59, 59, 59, 0.7);
+  position: absolute;
+  top: 0%;
+}
+.small-lightbox .view-button {
+  position: absolute;
+  width: 45px !important;
+  height: 32px !important;
+  right: 45%;
+  top: 45%;
+}
+.small-lightbox .fullscreen-button {
+  top: 2%;
+  right: 2%;
+  padding: 20px;
+  position: absolute;
+  width: 34px !important;
+  height: 34px !important;
+  z-index: 99999 !important;
+}
+
+.fullscreen-button2 {
+  top: 2%;
+  right: 2%;
+  padding: 20px;
+  position: absolute;
+  width: 34px !important;
+  height: 34px !important;
+  z-index: 99999 !important;
+}
+
+.small-lightbox-ref {
+  background-color: red;
+  z-index: 99999;
+  height: 60px;
+  width: 30px;
+  color: white;
+}
+
+.customCategory {
+  position: absolute;
+  color: white;
+  font-family: "Space Mono";
+  right: 15px !important;
+  bottom: 15px;
+  text-transform: uppercase;
+}
+
+.customTitle {
+  position: absolute;
+  z-index: 66666666;
+  color: white;
+  font-family: "Space Mono";
+  text-transform: uppercase;
+  bottom: 15px;
+  left: 15px;
 }
 
 .image-block {
@@ -320,7 +379,8 @@
   position: relative;
   display: inline-block;
 }
-.home-gallery-image img {
+
+.gallery-image img {
   width: 564px;
   height: 495px;
   -o-object-fit: cover;
@@ -341,7 +401,7 @@
   cursor: pointer;
 }
 
-.error-messsage p {
+.error-messsage {
   background-color: aquamarine !important;
   font-family: "Space Mono" !important;
 }
@@ -350,9 +410,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 70%;
-  margin-left: 12.7%;
-  -moz-column-gap: 22px;
-       column-gap: 22px;
+  margin-left: 18.7%;
+  -moz-column-gap: 2px;
+       column-gap: 2px;
+}
+.ajax-container img {
+  width: 564px;
+  height: 495px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.ajax-container p {
+  margin: auto;
+  font-family: "Space Mono" !important;
 }
 
 .load-more-photos-box {
@@ -371,9 +441,10 @@
   cursor: pointer;
 }
 #load-more-photos:hover {
-  background-color: #464545;
+  background: rgb(126, 125, 125);
   color: #fff;
-  transition: 1s;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 
 .more-photos {
@@ -463,7 +534,7 @@
   margin-left: 0%;
 }
 .photo-contact-container .photo-contact-button:hover {
-  background: rgb(165, 164, 164);
+  background: rgb(110, 110, 110);
   color: #fff;
   transition: all 0.5s;
   cursor: pointer;
@@ -515,6 +586,10 @@
 
 .contact-page {
   height: 100vh;
+}
+
+.get_id {
+  display: none !important;
 }
 
 .footer {
@@ -658,13 +733,17 @@
     padding-top: 30px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     flex-direction: column;
     margin: auto;
   }
+  .filters .filter-middle {
+    margin-left: 3% !important;
+    margin-top: 20px !important;
+  }
   .filters .filters-left {
-    margin-left: 8% !important;
-    margin-top: 60px !important;
+    margin-left: 3% !important;
+    margin-top: 40px !important;
   }
   .filters .filters-left .category-filter {
     padding-top: 20px !important;
@@ -675,7 +754,8 @@
     margin-bottom: 20px !important;
   }
   .filters .filters-right {
-    margin: auto !important;
+    margin-top: 20px !important;
+    margin-left: 3% !important;
   }
   .select2 {
     background: #727171 !important;
@@ -684,27 +764,58 @@
   .ajax-container {
     display: flex;
     flex-direction: column !important;
-    width: 100vw;
-    margin-left: 0;
+    width: 90vw;
+    margin-left: 8%;
   }
-  .ajax-container .home-gallery-image .lightbox-icons .fullscreen-button {
+  .ajax-container .image-block {
+    display: grid !important;
+    grid-template-columns: auto;
+    width: 100% !important;
+    margin-left: 6% !important;
+    justify-items: start;
+  }
+  .ajax-container .gallery-image {
+    width: 350px;
+    height: 320px !important;
+  }
+  .ajax-container .gallery-image img {
+    width: 360px;
+    height: 250px !important;
+  }
+  .ajax-container .gallery-image img .lightbox-icons .fullscreen-button {
     width: 35px !important;
     right: 0;
   }
-  .ajax-container .home-gallery-image .lightbox-icons .view-button {
+  .ajax-container .gallery-image img .lightbox-icons .view-button {
     width: 43px !important;
     margin-left: 0%;
     padding: 181px;
     padding-bottom: 282px !important;
   }
-  .ajax-container .home-gallery-image .lightbox-icons .custom-lightbox-cat {
+  .ajax-container .gallery-image img .lightbox-icons .custom-lightbox-cat {
     right: 15px;
   }
-  .ajax-container .home-gallery-image img {
-    width: 100% !important;
+  .ajax-container #lightbox-overlay {
+    position: relative !important;
+    top: 100vh !important;
   }
-  .lightbox-icons .view-button img {
+  .ajax-container .small-lightbox {
+    width: 350px;
+  }
+  .lightbox-icons .view-button {
     width: 50px !important;
+  }
+  .custom-lightbox-cat {
+    bottom: 10% !important;
+    right: 7% !important;
+  }
+  .custom-lightbox-title {
+    bottom: 10% !important;
+    left: 7% !important;
+  }
+  .fullscreen-button {
+    width: 30px !important;
+    height: 30px !important;
   }
   .photo-article {
     width: 90vw;
@@ -749,6 +860,22 @@
   .photo-contact-container .contact-arrows-container {
     display: none;
   }
+  .lightbox-next {
+    top: 110% !important;
+    right: -10% !important;
+  }
+  .lightbox-previous {
+    top: 110% !important;
+    left: -10% !important;
+  }
+  .lightbox-icons .view-button {
+    position: absolute;
+    padding-bottom: 110px !important;
+    padding: 137px;
+  }
+  .lightbox-icons .fullscreen-button {
+    display: none;
+  }
   .form-overlay .form-container {
     position: relative;
     width: 80% !important;
@@ -774,6 +901,9 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+  }
+  .aimerez-aussi .aussi-container .photos-related .image-block {
+    margin-left: 0 !important;
   }
   .aimerez-aussi .aussi-container .photos-related img {
     max-width: 100%;

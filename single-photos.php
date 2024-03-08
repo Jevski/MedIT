@@ -57,7 +57,7 @@
 
             //on passe la variable ref php en javascript pour la préécrire dans le formulaire
             var prepopulateRef = <?php echo json_encode($references); ?>;
-            ;
+            
         </script>
 
         </div>
@@ -112,9 +112,11 @@
             <h3 class="aussi-title">Vous aimerez aussi</h3>
             <div class="photos-related">
                 
-            <?php 
+             <?php 
     $categories = get_the_terms(get_the_ID(), 'mota-category'); // Assuming you are retrieving the categories for the current post
 
+
+    
     $args = array(
         'post_type' => 'photos', 
         'posts_per_page' => 2, 
@@ -122,7 +124,8 @@
         'tax_query' => array(
             array(
                 'taxonomy' => 'mota-category',
-                'terms' => $categories[0]->term_id, // Use the first category of the current post
+                'terms' => $categories[0]->term_id,
+                // Use the first category of the current post
             ),
         ),
     );
@@ -136,7 +139,7 @@
         }
         wp_reset_postdata(); 
     }
-?>
+?> 
     </div> 
         </div>
     

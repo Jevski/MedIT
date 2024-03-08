@@ -1,9 +1,9 @@
 <div class="image-block">
         <div class="home-gallery-image">
             
-            <?php echo get_the_post_thumbnail(); ?>
+            <div id="img-<?php echo get_the_ID(); ?>" class="gallery-image"><?php  echo get_the_post_thumbnail(); ?></div>
             <?php get_template_part('/template-parts/small-lightbox'); ?>
-            <?php echo get_the_ID(); ?>
+            
         </div>
 
 
