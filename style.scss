@@ -212,16 +212,16 @@
     
 
 //Lightbox on hover//
-.lightbox-container{
-    top:0;
-    display: none;
-    width:100%;
-    background-color:rgb(0, 0, 0, 0.5);
-    height:100vh;
-    z-index:99999999;
-    position: fixed;
+// .lightbox-container{
+//     top:0;
+//     display: none;
+//     width:100%;
+//     background-color:rgb(0, 0, 0, 0.5);
+//     height:100vh;
+//     z-index:99999999;
+//     position: fixed;
     
-}
+// }
 .lightbox-icons{
         top:50%;
         right:50%;
@@ -279,7 +279,7 @@
 .lightbox-overlay{
     position:fixed;
     height:97vh;
-    background-color: rgba(59, 59, 59, 0.6);
+    background-color: rgba(59, 59, 59, 0.7);
     padding-top:20px;
     margin-bottom:50px !important;
     width:98vw;
@@ -301,7 +301,7 @@
         
         .lightbox-previous{
             position: absolute;
-            left:-19%;
+            left:-22%;
             top:50%;
             
         }
@@ -772,6 +772,7 @@
 
     
    }
+   
    .menu-mobile{
     display: block;
     padding-top:8px;
@@ -907,18 +908,29 @@
 }
 // lightboxes//
 
-#lightbox-overlay{
-    position: relative !important;
-    top:100vh !important;
-
-}
 
 .small-lightbox{
     width:350px;
     
 }
+
 }
 //lightbox images
+.lightbox-overlay{
+    
+    position:fixed;
+    height:100vh;
+    background-color: rgba(59, 59, 59, 0.8);
+    padding-top:20px;
+    margin-bottom:50px !important;
+    width:98vw;
+    top: 30% !important; 
+    left:25%;/* Position it 50% down from the top */
+    transform: translate(-50%, -50%); /* Center the lightbox horizontally and vertically */
+    z-index:100000000;
+    padding-top:135px !important;
+
+}
 .lightbox-icons{
 
     
@@ -990,11 +1002,11 @@
 }
 
 .lightbox-next{
-    top:110% !important;
+    top:130% !important;
     right:-10% !important;
 }
 .lightbox-previous{
-    top:110% !important;
+    top:130% !important;
     left:-10% !important;
 }
 .lightbox-icons{
